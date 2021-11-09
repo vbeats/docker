@@ -9,6 +9,16 @@
 
 容器内数据卷基本都是`/data`
 
+## sentinel
+
+```bash
+# 环境变量
+ENV TINI_VERSION=v0.19.0
+ENV SENTINEL_VERSION=1.8.2
+ENV SENTINEL_USERNAME=sentinel
+ENV SENTINEL_PASSWORD=123456
+```
+
 
 ## gmt
 
