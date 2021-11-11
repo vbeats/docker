@@ -11,8 +11,10 @@ WORKDIR /root
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
 ADD https://github.com/alibaba/Sentinel/releases/download/${SENTINEL_VERSION}/sentinel-dashboard-${SENTINEL_VERSION}.jar ./sentinel.jar
 
-RUN chmod +x /usr/bin/tini
+COPY docker-entrypoint.sh /usr/bin
+
+RUN chmod +x /usr/bin/tini && chmod +x /usr/bin/docker-entrypoint.sh
 
 EXPOSE 8080/tcp
 
-ENTRYPOINT ["tini", "--", "java", "-Dserver.port=8080", "-Dcsp.sentinel.dashboard.server=localhost:8080" ,"-Dproject.name=sentinel-dashboard","-Dsentinel.dashboard.auth.username=$SENTINEL_USERNAME","-Dsentinel.dashboard.auth.password=$SENTINEL_PASSWORD","-jar","sentinel.jar"]
+ENTRYPOINT ["tini", "--", "docker-entrypoint.sh"]
