@@ -11,6 +11,8 @@
 
 ## sentinel
 
+端口 `8080`
+
 ```bash
 # 环境变量
 ENV TINI_VERSION=v0.19.0
